@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: biblioteca
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/biblioteca
+    username: root
+    password:
+
+# Configurações de disparo de email
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: pauloricardomilos@gmail.com
+    password: dfqvxfqgthhsryym
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+
