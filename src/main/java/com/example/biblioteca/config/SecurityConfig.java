@@ -27,15 +27,15 @@ public class SecurityConfig {
 
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtFilter filter) throws Exception{
-        return  http.csrf(AbstractHttpConfigurer::disable)
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtFilter filter) throws Exception {
+        return http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers(HttpMethod.POST, "/usuario" ).permitAll();
+                    auth.requestMatchers(HttpMethod.POST, "/usuario").permitAll();
                     auth.requestMatchers(HttpMethod.POST, "/usuario/adm").hasRole(Perfil.ADM.name());
                     auth.requestMatchers("/usuario/validar").permitAll();
                     auth.requestMatchers("/usuario/solicitar-codigo").permitAll();
                     auth.requestMatchers("/usuario/login").permitAll();
-                    auth.requestMatchers(HttpMethod.GET,"/cliente").permitAll();
+                    auth.requestMatchers(HttpMethod.GET, "/cliente").permitAll();
                     auth.anyRequest().authenticated();
                 })
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
@@ -44,14 +44,14 @@ public class SecurityConfig {
 
 
     @Bean
-    public GrantedAuthorityDefaults grantedAuthorityDefaults(){
+    public GrantedAuthorityDefaults grantedAuthorityDefaults() {
         return new
                 GrantedAuthorityDefaults("");
     }
 
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(10);
     }
 }

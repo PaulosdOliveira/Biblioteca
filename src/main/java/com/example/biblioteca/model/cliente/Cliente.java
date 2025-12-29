@@ -31,4 +31,8 @@ public class Cliente {
     public Cliente(CadastroClienteDTO dadosCadastrais) {
         BeanUtils.copyProperties(dadosCadastrais, this);
     }
+
+    public Cliente(UUID id) {
+        this.id = id;
+    }
 }

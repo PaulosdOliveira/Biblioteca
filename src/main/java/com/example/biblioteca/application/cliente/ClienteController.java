@@ -6,6 +6,7 @@ import com.example.biblioteca.model.cliente.UpdateClienteDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,11 +25,24 @@ public class ClienteController {
         service.cadastrarCliente(dadosCadastrais);
     }
 
-    // HttpMessageNotReadableException
 
     @PutMapping("/{id}")
     public void alterarDadosCliente(@PathVariable UUID id, @RequestBody UpdateClienteDTO novosDados) {
         service.alterarDadosCliente(id, novosDados);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    public void deletarCliente(@PathVariable UUID id){
+        service.deletarCliente(id);
+    }
+
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasRole('ADM')")
+    @DeleteMapping("/{id}/adm")
+    public void deletarClienteComPendencia(@PathVariable UUID id){
+        service.deletarClienteComPendencias(id);
     }
 
     @GetMapping
