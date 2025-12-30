@@ -23,5 +23,7 @@ spring:
             enable: true
 
 variaveis:
-  key:
-    encoded: ${ENCODED_SECRET_KEY}
+  secret:
+    key:
+      encoded: ${SECRET_KEY_ENCODED}
+      algorithm: ${SECRET_KEY_ALGORITHM}
