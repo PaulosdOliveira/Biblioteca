@@ -30,7 +30,7 @@ public class SecretKeyGenerator {
                     System.out.println(e);
                 }
             }
-            this.secretKey = new SecretKeySpec(encoded, "HmacSHA256");
+            this.secretKey = new SecretKeySpec(encoded, algorithm);
         }
         return secretKey;
     }
